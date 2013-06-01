@@ -8,13 +8,10 @@ public class PokerHands implements Comparable<PokerHands> {
 	}
 
 	public int compareTo(PokerHands another) {
-		if (getFirstCardRank(cards) > getFirstCardRank(another.cards))
-			return 1;
-		
-		return 0;
+		return getFirstCardRank(cards).compareTo(getFirstCardRank(another.cards));
 	}
 
-	private int getFirstCardRank(String cards) {
+	private Integer getFirstCardRank(String cards) {
 		return Integer.parseInt(String.valueOf(cards.charAt(0)));
 	}
 
