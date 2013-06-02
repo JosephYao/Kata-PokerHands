@@ -10,11 +10,12 @@ public class TestPokerHands {
 	}
 
 	@Test
-	public void high_card_with_only_first_card_different() {
+	public void high_card_with_only_one_card_different() {
 		assertPokerHandsLargerThan("9S 4H 5C 6S 8C", "2S 4H 5C 6S 8C");
 		assertPokerHandsSmallerThan("2S 4H 5C 6S 8C", "9S 4H 5C 6S 8C");
+		assertPokerHandsLargerThan("2S 9H 5C 6S 8C", "2S 4H 5C 6S 8C");
 	}
-
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
