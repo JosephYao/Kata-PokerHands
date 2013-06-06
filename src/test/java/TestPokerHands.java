@@ -22,6 +22,15 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("2S 4H 9C 6S 8C", "2S 5H 4C 8S 6C");
 	}
 	
+	@Test
+	public void high_card_with_card_rank_not_a_number() {
+		assertPokerHandsLargerThan("2S 4H 6S 8C TD", "2S 4H 6S 8C 9D");
+		assertPokerHandsLargerThan("2S 4H 6S 8C JD", "2S 4H 6S 8C TD");
+		assertPokerHandsLargerThan("2S 4H 6S 8C QD", "2S 4H 6S 8C JD");
+		assertPokerHandsLargerThan("2S 4H 6S 8C KD", "2S 4H 6S 8C QD");
+		assertPokerHandsLargerThan("2S 4H 6S 8C AD", "2S 4H 6S 8C KD");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);

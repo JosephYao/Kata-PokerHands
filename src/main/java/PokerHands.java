@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +9,9 @@ public class PokerHands implements Comparable<PokerHands> {
 	private static final int CARD_INDEX_STEP = 3;
 	private static final int CARD_COUNT = 5;
 	private final List<Integer> cardRanks;
+	private final static List<Character> CARD_RANK_SYMBOLS = Arrays.asList(new Character[]{
+			'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'
+	});
 
 	public PokerHands(String cards) {
 		cardRanks = initializeCardRanks(cards);
@@ -30,7 +34,7 @@ public class PokerHands implements Comparable<PokerHands> {
 	}
 
 	private Integer getCardRank(int cardIndex, String cards) {
-		return Integer.parseInt(String.valueOf(cards.charAt(cardIndex * CARD_INDEX_STEP)));
+		return CARD_RANK_SYMBOLS.indexOf(cards.charAt(cardIndex * CARD_INDEX_STEP));
 	}
 
 }
