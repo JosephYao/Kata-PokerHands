@@ -29,6 +29,18 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("2S 4H 6S 8C QD", "2S 4H 6S 8C JD");
 		assertPokerHandsLargerThan("2S 4H 6S 8C KD", "2S 4H 6S 8C QD");
 		assertPokerHandsLargerThan("2S 4H 6S 8C AD", "2S 4H 6S 8C KD");
+	} 
+	
+	@Test
+	public void high_card_with_larger_highest_rank_but_smaller_second_highest_card_rank() {
+		assertPokerHandsLargerThan("2S 4H 6S 7C AD", "2S 4H 6S 8C KD");
+	}
+	
+	@Test
+	public void pair_is_higher_than_high_card() {
+		assertPokerHandsLargerThan("2S 2H 3S 4C 5D", "9S JH QS KC AD");
+		assertPokerHandsSmallerThan("9S JH QS KC AD", "2S 2H 3S 4C 5D");
+		assertPokerHandsLargerThan("2S 3H 3S 4C 5D", "9S JH QS KC AD");
 	}
 	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {

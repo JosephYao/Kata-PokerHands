@@ -21,16 +21,30 @@ public class PokerHands implements Comparable<PokerHands> {
 		List<Integer> cardRanks = new ArrayList<>();
 		for (int cardIndex = 0; cardIndex < CARD_COUNT; cardIndex++)
 			cardRanks.add(getCardRank(cardIndex, cards));
-		Collections.sort(cardRanks);
+		Collections.sort(cardRanks, Collections.reverseOrder());
 		return cardRanks;
 	}
 
 	public int compareTo(PokerHands another) {
+		if (isPair())
+			return 1;
+		
+		if (another.isPair())
+			return -1;
+		
 		for (int cardIndex = 0; cardIndex < CARD_COUNT; cardIndex++)
 			if (cardRanks.get(cardIndex).compareTo(another.cardRanks.get(cardIndex)) != 0)
 				return cardRanks.get(cardIndex).compareTo(another.cardRanks.get(cardIndex));
 		
 		return 0;
+	}
+
+	private boolean isPair() {
+		for (int index = 0; index < CARD_COUNT - 1; index++)
+			if (cardRanks.get(index) == cardRanks.get(index + 1))
+				return true;
+		
+		return false;
 	}
 
 	private Integer getCardRank(int cardIndex, String cards) {
