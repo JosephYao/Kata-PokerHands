@@ -27,7 +27,7 @@ public class PokerHands implements Comparable<PokerHands> {
 
 	public int compareTo(PokerHands another) {
 		if (isPair() && another.isPair())
-			return cardRanks.get(0).compareTo(another.cardRanks.get(0));
+			return getPairCardRank().compareTo(another.getPairCardRank());
 		
 		if (isPair())
 			return 1;
@@ -42,12 +42,20 @@ public class PokerHands implements Comparable<PokerHands> {
 		return 0;
 	}
 
+	private Integer getPairCardRank() {
+		return cardRanks.get(getPairCardIndex());
+	}
+
 	private boolean isPair() {
+		return getPairCardIndex() != -1;
+	}
+
+	private int getPairCardIndex() {
 		for (int index = 0; index < CARD_COUNT - 1; index++)
 			if (cardRanks.get(index) == cardRanks.get(index + 1))
-				return true;
+				return index;
 		
-		return false;
+		return -1;
 	}
 
 	private Integer getCardRank(int cardIndex, String cards) {
