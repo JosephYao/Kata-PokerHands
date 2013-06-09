@@ -26,6 +26,9 @@ public class PokerHands implements Comparable<PokerHands> {
 	}
 
 	public int compareTo(PokerHands another) {
+		if (isPair() && another.isPair())
+			return cardRanks.get(0).compareTo(another.cardRanks.get(0));
+		
 		if (isPair())
 			return 1;
 		
