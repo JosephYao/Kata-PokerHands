@@ -58,6 +58,14 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("9S 9H 7S 8C QD", "2S 3H 9S 9C QD");
 	}
 	
+	@Test
+	public void two_pairs_is_higher_than_pair() {
+		assertPokerHandsLargerThan("2S 2H 3S 3C 4D", "JS QH KS AC AD");
+		assertPokerHandsSmallerThan("JS QH KS AC AD", "2S 2H 3S 3C 4D");
+		assertPokerHandsLargerThan("2S 3H 3S 4C 4D", "JS QH KS AC AD");
+		assertPokerHandsLargerThan("2S 2H 3S 4C 4D", "JS QH KS AC AD");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
