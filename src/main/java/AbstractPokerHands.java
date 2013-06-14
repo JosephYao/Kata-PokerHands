@@ -8,6 +8,7 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 
 	protected final List<Integer> cardRanks;
 	protected final AbstractPokerHands next;
+	private final PokerHandsType type;
 	private final static List<Character> CARD_RANK_SYMBOLS = Arrays.asList(new Character[]{
 			'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'
 	});	
@@ -16,7 +17,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 
 	protected enum PokerHandsType {
 		HIGH_CARD(0),
-		PAIR(1);
+		PAIR(1),
+		TWO_PAIRS(2);
 		
 		private final int rank;
 
@@ -29,12 +31,20 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		}
 	}
 	
-	public AbstractPokerHands(String cards, AbstractPokerHands next) {
+	public AbstractPokerHands(String cards, PokerHandsType type, AbstractPokerHands next) {
 		cardRanks = initializeCardRanks(cards);
 		this.next = next;
+		this.type = type;
 	}
 	
-	abstract protected PokerHandsType getType();
+	private PokerHandsType getType() {
+		if (isMatched())
+			return type;
+		else
+			return next.getType();
+	}
+	
+	abstract protected boolean isMatched();
 
 	abstract protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks);
 	
@@ -56,6 +66,17 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 				return cardRanks.get(cardIndex).compareTo(anotherCardRanks.get(cardIndex));
 		
 		return 0;
+	}
+
+	@Override
+	public int compareTo(AbstractPokerHands another) {
+		if (getType().getRank().compareTo(another.getType().getRank()) != 0)
+			return getType().getRank().compareTo(another.getType().getRank());
+		
+		if (isMatched())
+			return compare(cardRanks, another.cardRanks);
+		else
+			return next.compareTo(another);
 	}
 
 }

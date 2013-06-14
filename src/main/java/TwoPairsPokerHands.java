@@ -4,21 +4,16 @@ import java.util.List;
 public class TwoPairsPokerHands extends AbstractPokerHands {
 
 	public TwoPairsPokerHands(String cards, AbstractPokerHands next) {
-		super(cards, next);
+		super(cards, PokerHandsType.TWO_PAIRS, next);
 	}
 
 	@Override
-	public int compareTo(AbstractPokerHands another) {
-		if (isTwoPairs(cardRanks))
-			return 1;
-		
-		if (isTwoPairs(another.cardRanks))
-			return -1;
-		
-		return next.compareTo(another.next);
+	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
+		return 0; 
 	}
 
-	private boolean isTwoPairs(List<Integer> cardRanks) {
+	@Override
+	protected boolean isMatched() {
 		int pairCount = 0;
 		
 		for (int index = 0; index < CARD_COUNT - 1; index++)
@@ -26,16 +21,6 @@ public class TwoPairsPokerHands extends AbstractPokerHands {
 				pairCount++;
 		
 		return pairCount == 2;
-	}
-
-	@Override
-	protected PokerHandsType getType() {
-		return null;
-	}
-
-	@Override
-	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
-		return 0;
 	}
 
 }

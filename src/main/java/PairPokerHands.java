@@ -7,23 +7,7 @@ public class PairPokerHands extends AbstractPokerHands {
 	private static final int NO_PAIR_CARD_INDEX = -1;
 
 	public PairPokerHands(String cards, AbstractPokerHands next) {
-		super(cards, next);
-	}
-
-	@Override
-	public int compareTo(AbstractPokerHands another) {
-		if (getType().getRank().compareTo(another.getType().getRank()) != 0)
-			return getType().getRank().compareTo(another.getType().getRank());
-		else
-			return compare(cardRanks, another.cardRanks);
-	}
-
-	@Override
-	protected PokerHandsType getType() {
-		if (isPair())
-			return PokerHandsType.PAIR;
-		else
-			return next.getType();
+		super(cards, PokerHandsType.PAIR, next);
 	}
 
 	private List<Integer> getRestHighCardsOfPair(List<Integer> cardRanks) {
@@ -38,10 +22,6 @@ public class PairPokerHands extends AbstractPokerHands {
 		return cardRanks.get(getPairCardIndex(cardRanks));
 	}
 
-	private boolean isPair() {
-		return getPairCardIndex(cardRanks) != NO_PAIR_CARD_INDEX;
-	}
-
 	private int getPairCardIndex(List<Integer> cardRanks) {
 		for (int index = 0; index < CARD_COUNT - 1; index++)
 			if (cardRanks.get(index) == cardRanks.get(index + 1))
@@ -52,15 +32,17 @@ public class PairPokerHands extends AbstractPokerHands {
 
 	@Override
 	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
-		if (isPair())
-			if (getPairCardRank(cardRanks).compareTo(getPairCardRank(anotherCardRanks)) != 0)
-				return getPairCardRank(cardRanks).compareTo(getPairCardRank(anotherCardRanks));
-			else
-				return compareHighCard(
-						getRestHighCardsOfPair(cardRanks), 
-						getRestHighCardsOfPair(anotherCardRanks));
+		if (getPairCardRank(cardRanks).compareTo(getPairCardRank(anotherCardRanks)) != 0)
+			return getPairCardRank(cardRanks).compareTo(getPairCardRank(anotherCardRanks));
 		else
-			return next.compare(cardRanks, anotherCardRanks);
+			return compareHighCard(
+					getRestHighCardsOfPair(cardRanks), 
+					getRestHighCardsOfPair(anotherCardRanks));
+	}
+
+	@Override
+	protected boolean isMatched() {
+		return getPairCardIndex(cardRanks) != NO_PAIR_CARD_INDEX;
 	}
 
 }
