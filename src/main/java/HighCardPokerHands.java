@@ -17,5 +17,4 @@ public class HighCardPokerHands extends AbstractPokerHands {
 	protected boolean isMatched() {
 		return true;
 	}
-
 }
