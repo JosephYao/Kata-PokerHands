@@ -18,7 +18,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 	protected enum PokerHandsType {
 		HIGH_CARD(0),
 		PAIR(1),
-		TWO_PAIRS(2);
+		TWO_PAIRS(2), 
+		THREE_OF_A_KIND(3);
 		
 		private final int rank;
 
