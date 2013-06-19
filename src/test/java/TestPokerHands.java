@@ -107,6 +107,11 @@ public class TestPokerHands {
 		assertPokerHandsSmallerThan("TH JS QC KD AS", "2S 2S 2S 3S 4S");
 	}
 	
+	@Test
+	public void flush_compare_to_flush_by_high_card_ranks() {
+		assertPokerHandsLargerThan("2S 2S 2S 3S TS", "2H 3H 4H 5H 9H");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);

@@ -24,9 +24,8 @@ public class FlushPokerHands extends AbstractPokerHands {
 	}
 
 	@Override
-	protected int compare(List<Integer> cardRanks,
-			List<Integer> anotherCardRanks) {
-		return 0;
+	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
+		return compareHighCard(cardRanks, anotherCardRanks);
 	}
 
 }
