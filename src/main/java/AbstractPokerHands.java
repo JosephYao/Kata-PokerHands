@@ -19,7 +19,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		HIGH_CARD(0),
 		PAIR(1),
 		TWO_PAIRS(2), 
-		THREE_OF_A_KIND(3);
+		THREE_OF_A_KIND(3), 
+		STRAIGHT(4);
 		
 		private final int rank;
 

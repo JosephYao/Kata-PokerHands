@@ -90,6 +90,12 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("2H 3S 3C 3D 4S", "2H 2S 2C 3D 4S");
 	}
 	
+	@Test
+	public void straight_is_higher_than_three_of_a_kind() {
+		assertPokerHandsLargerThan("2H 3S 4C 5D 6S", "QH KS AC AD AS");
+		assertPokerHandsSmallerThan("QH KS AC AD AS", "2H 3S 4C 5D 6S");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
