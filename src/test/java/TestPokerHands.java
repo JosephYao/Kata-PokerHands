@@ -39,7 +39,7 @@ public class TestPokerHands {
 	@Test
 	public void pair_is_higher_than_high_card() {
 		assertPokerHandsLargerThan("2S 2H 3S 4C 5D", "9S JH QS KC AD");
-		assertPokerHandsSmallerThan("9S JH QS KC AD", "2S 2H 3S 4C 5D");
+		assertPokerHandsSmallerThan("9S JS QS KS AD", "2S 2H 3S 4C 5D");
 		assertPokerHandsLargerThan("2S 3H 3S 4C 5D", "9S JH QS KC AD");
 	}
 	
@@ -93,12 +93,18 @@ public class TestPokerHands {
 	@Test
 	public void straight_is_higher_than_three_of_a_kind() {
 		assertPokerHandsLargerThan("2H 3S 4C 5D 6S", "QH KS AC AD AS");
-		assertPokerHandsSmallerThan("QH KS AC AD AS", "2H 3S 4C 5D 6S");
+		assertPokerHandsSmallerThan("QH KS AL AD AS", "2H 3S 4C 5D 6S");
 	}
 	
 	@Test
 	public void straight_compare_to_straight_by_highest_card_rank() {
 		assertPokerHandsLargerThan("3S 4C 5D 6S 7H", "2H 3S 4C 5D 6S");
+	}
+	
+	@Test
+	public void flush_is_higher_than_straight() {
+		assertPokerHandsLargerThan("2S 2S 2S 3S 4S", "TH JS QC KD AS");
+		assertPokerHandsSmallerThan("TH JS QC KD AS", "2S 2S 2S 3S 4S");
 	}
 	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {

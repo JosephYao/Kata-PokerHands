@@ -12,7 +12,7 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 	private final static List<Character> CARD_RANK_SYMBOLS = Arrays.asList(new Character[]{
 			'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'
 	});	
-	private static final int CARD_INDEX_STEP = 3;
+	protected static final int CARD_INDEX_STEP = 3;
 	protected static final int CARD_COUNT = 5;
 
 	protected enum PokerHandsType {
@@ -20,7 +20,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		PAIR(1),
 		TWO_PAIRS(2), 
 		THREE_OF_A_KIND(3), 
-		STRAIGHT(4);
+		STRAIGHT(4), 
+		FLUSH(5);
 		
 		private final int rank;
 
