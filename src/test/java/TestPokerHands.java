@@ -96,6 +96,11 @@ public class TestPokerHands {
 		assertPokerHandsSmallerThan("QH KS AC AD AS", "2H 3S 4C 5D 6S");
 	}
 	
+	@Test
+	public void straight_compare_to_straight_by_highest_card_rank() {
+		assertPokerHandsLargerThan("3S 4C 5D 6S 7H", "2H 3S 4C 5D 6S");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);

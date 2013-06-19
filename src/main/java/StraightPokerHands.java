@@ -16,10 +16,8 @@ public class StraightPokerHands extends AbstractPokerHands {
 	}
 
 	@Override
-	protected int compare(List<Integer> cardRanks,
-			List<Integer> anotherCardRanks) {
-		// TODO Auto-generated method stub
-		return 0;
+	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
+		return compareHighCard(cardRanks, anotherCardRanks);
 	}
 
 }
