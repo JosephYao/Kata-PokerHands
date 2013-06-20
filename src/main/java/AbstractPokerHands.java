@@ -92,4 +92,12 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		return cardRanks.get(pairCardIndex) == cardRanks.get(pairCardIndex + 1);
 	}
 
+	protected Integer getThreeOfAKindCardRank(List<Integer> cardRanks) {
+		for (int index = 0; index < CARD_COUNT - 2; index++)
+			if (isThreeNeighborCardRanksEquals(index, cardRanks))
+				return cardRanks.get(index);
+		
+		throw new IllegalStateException();
+	}
+
 }

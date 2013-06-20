@@ -18,9 +18,9 @@ public class FullhousePokerHands extends AbstractPokerHands {
 	}
 
 	@Override
-	protected int compare(List<Integer> cardRanks,
-			List<Integer> anotherCardRanks) {
-		return 0;
+	protected int compare(List<Integer> cardRanks, List<Integer> anotherCardRanks) {
+		return getThreeOfAKindCardRank(cardRanks).compareTo(
+			   getThreeOfAKindCardRank(anotherCardRanks));
 	}
 
 }

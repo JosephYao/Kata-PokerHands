@@ -113,10 +113,15 @@ public class TestPokerHands {
 	}
 	
 	@Test
-	public void Fullhouse_is_higher_than_flush() {
+	public void fullhouse_is_higher_than_flush() {
 		assertPokerHandsLargerThan("2S 2C 2D 3S 3H", "2S 2S 2S 3S 4S");
 		assertPokerHandsSmallerThan("2S 2S 2S 3S 4S", "2S 2C 2D 3S 3H");
 		assertPokerHandsLargerThan("2S 2C 3D 3S 3H", "2S 2S 2S 3S 4S");
+	}
+	
+	@Test
+	public void fullhouse_compare_to_fullhouse_by_three_of_a_kind() {
+		assertPokerHandsLargerThan("2S 2C 3D 3S 3H", "2S 2C 2D 3S 3H");
 	}
 	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {

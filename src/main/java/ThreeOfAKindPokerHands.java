@@ -20,12 +20,4 @@ public class ThreeOfAKindPokerHands extends AbstractPokerHands {
 			   getThreeOfAKindCardRank(anotherCardRanks));
 	}
 
-	private Integer getThreeOfAKindCardRank(List<Integer> cardRanks) {
-		for (int index = 0; index < CARD_COUNT - 2; index++)
-			if (isThreeNeighborCardRanksEquals(index, cardRanks))
-				return cardRanks.get(index);
-		
-		throw new IllegalStateException();
-	}
-
 }
