@@ -28,7 +28,7 @@ public abstract class AbstractPairPokerHands extends AbstractPokerHands {
 		List<Integer> result = new ArrayList<>();
 	
 		for (int index = 0; index < CARD_COUNT - 1; index++)
-			if (cardRanks.get(index) == cardRanks.get(index + 1))
+			if (isTwoNeighborCardRanksEquals(index, cardRanks))
 				result.add(cardRanks.get(index));
 	
 		return result;
@@ -38,7 +38,7 @@ public abstract class AbstractPairPokerHands extends AbstractPokerHands {
 		int pairCount = 0;
 	
 		for (int index = 0; index < CARD_COUNT - 1; index++)
-			if (cardRanks.get(index) == cardRanks.get(index + 1))
+			if (isTwoNeighborCardRanksEquals(index, cardRanks))
 				pairCount++;
 		return pairCount;
 	}

@@ -21,7 +21,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		TWO_PAIRS(2), 
 		THREE_OF_A_KIND(3), 
 		STRAIGHT(4), 
-		FLUSH(5);
+		FLUSH(5), 
+		FULLHOUSE(6);
 		
 		private final int rank;
 
@@ -80,6 +81,15 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 			return compare(cardRanks, another.cardRanks);
 		else
 			return next.compareTo(another);
+	}
+
+	protected boolean isThreeNeighborCardRanksEquals(int index, List<Integer> cardRanks) {
+		return cardRanks.get(index) == cardRanks.get(index + 1) &&
+			   cardRanks.get(index) == cardRanks.get(index + 2);
+	}
+
+	protected boolean isTwoNeighborCardRanksEquals(int pairCardIndex, List<Integer> cardRanks) {
+		return cardRanks.get(pairCardIndex) == cardRanks.get(pairCardIndex + 1);
 	}
 
 }
