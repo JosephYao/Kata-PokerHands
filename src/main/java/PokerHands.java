@@ -9,20 +9,22 @@ public class PokerHands implements Comparable<PokerHands> {
 	}
 
 	public int compareTo(PokerHands another) {
-		return  new FullhousePokerHands(cards,
+		return  new FourOfAKindPokerHands(cards,
+				new FullhousePokerHands(cards,
 				new FlushPokerHands(cards, 
 				new StraightPokerHands(cards,
 				new ThreeOfAKindPokerHands(cards, 
 				new TwoPairsPokerHands(cards,
 				new PairPokerHands(cards, 
-				new HighCardPokerHands(cards))))))).compareTo(
+				new HighCardPokerHands(cards)))))))).compareTo(
+				new FourOfAKindPokerHands(another.cards,
 				new FullhousePokerHands(another.cards, 
 				new FlushPokerHands(another.cards,
 				new StraightPokerHands(another.cards,
 				new ThreeOfAKindPokerHands(another.cards,
 				new TwoPairsPokerHands(another.cards, 
 				new PairPokerHands(another.cards, 
-				new HighCardPokerHands(another.cards))))))));
+				new HighCardPokerHands(another.cards)))))))));
 	}
 
 }
