@@ -131,6 +131,11 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("2S 3C 3D 3S 3H", "KS KC AD AS AH");
 	}
 	
+	@Test
+	public void four_of_a_kind_compare_to_four_of_a_kind_by_card_rank() {
+		assertPokerHandsLargerThan("2S 3C 3D 3S 3H", "2S 2C 2D 2S 3H");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
