@@ -17,22 +17,15 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 	protected static final int CARD_COUNT = 5;
 
 	protected enum PokerHandsType {
-		HIGH_CARD(0),
-		PAIR(1),
-		TWO_PAIRS(2), 
-		THREE_OF_A_KIND(3), 
-		STRAIGHT(4), 
-		FLUSH(5), 
-		FULLHOUSE(6), 
-		FOUROFAKIND(7), 
-		STRAIGHT_FLUSH(8);
-		
-		private final Integer rank;
-
-		PokerHandsType(int rank) {
-			this.rank = rank;
-		}
-		
+		HIGH_CARD,
+		PAIR,
+		TWO_PAIRS, 
+		THREE_OF_A_KIND, 
+		STRAIGHT, 
+		FLUSH, 
+		FULLHOUSE, 
+		FOUROFAKIND, 
+		STRAIGHT_FLUSH;
 	}
 	
 	public AbstractPokerHands(String cards, PokerHandsType type, AbstractPokerHands next) {
@@ -75,8 +68,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 
 	@Override
 	public int compareTo(AbstractPokerHands another) {
-		if (getType().rank.compareTo(another.getType().rank) != 0)
-			return getType().rank.compareTo(another.getType().rank);
+		if (getType().compareTo(another.getType()) != 0)
+			return getType().compareTo(another.getType());
 		
 		if (isMatched())
 			return compare(cardRanks, another.cardRanks);
