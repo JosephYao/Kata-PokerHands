@@ -40,6 +40,7 @@ public abstract class AbstractPairPokerHands extends AbstractPokerHands {
 		for (int index = 0; index < CARD_COUNT - 1; index++)
 			if (isTwoNeighborCardRanksEquals(index, cardRanks))
 				pairCount++;
+		
 		return pairCount;
 	}
 
