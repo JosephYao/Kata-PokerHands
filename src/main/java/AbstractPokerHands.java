@@ -7,12 +7,13 @@ import java.util.List;
 public abstract class AbstractPokerHands implements Comparable<AbstractPokerHands> {
 
 	protected final List<Integer> cardRanks;
-	protected final AbstractPokerHands next;
+	private final AbstractPokerHands next;
 	private final PokerHandsType type;
+	private final String cards;
 	private final static List<Character> CARD_RANK_SYMBOLS = Arrays.asList(new Character[]{
 			'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'
 	});	
-	protected static final int CARD_INDEX_STEP = 3;
+	private static final int CARD_INDEX_STEP = 3;
 	protected static final int CARD_COUNT = 5;
 
 	protected enum PokerHandsType {
@@ -23,23 +24,22 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 		STRAIGHT(4), 
 		FLUSH(5), 
 		FULLHOUSE(6), 
-		FOUROFAKIND(7);
+		FOUROFAKIND(7), 
+		STRAIGHT_FLUSH(8);
 		
-		private final int rank;
+		private final Integer rank;
 
 		PokerHandsType(int rank) {
 			this.rank = rank;
 		}
 		
-		Integer getRank() {
-			return rank;
-		}
 	}
 	
 	public AbstractPokerHands(String cards, PokerHandsType type, AbstractPokerHands next) {
 		cardRanks = initializeCardRanks(cards);
 		this.next = next;
 		this.type = type;
+		this.cards = cards;
 	}
 	
 	private PokerHandsType getType() {
@@ -75,8 +75,8 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 
 	@Override
 	public int compareTo(AbstractPokerHands another) {
-		if (getType().getRank().compareTo(another.getType().getRank()) != 0)
-			return getType().getRank().compareTo(another.getType().getRank());
+		if (getType().rank.compareTo(another.getType().rank) != 0)
+			return getType().rank.compareTo(another.getType().rank);
 		
 		if (isMatched())
 			return compare(cardRanks, another.cardRanks);
@@ -99,6 +99,25 @@ public abstract class AbstractPokerHands implements Comparable<AbstractPokerHand
 				return cardRanks.get(index);
 		
 		throw new IllegalStateException();
+	}
+
+	protected boolean isFlush() {
+		boolean result = true;
+		for (int cardIndex = 0; cardIndex < CARD_COUNT - 1; cardIndex++)
+			result &= cards.charAt(getCardSuitIndex(cardIndex)) == 
+					  cards.charAt(getCardSuitIndex(cardIndex + 1));
+		return result;
+	}
+
+	private int getCardSuitIndex(int cardIndex) {
+		return cardIndex * CARD_INDEX_STEP + 1;
+	}
+
+	protected boolean isStraight() {
+		boolean result = true;
+		for (int index = 0; index < CARD_COUNT - 1; index++)
+			result &= cardRanks.get(index) - 1 == cardRanks.get(index + 1);
+		return result;
 	}
 
 }

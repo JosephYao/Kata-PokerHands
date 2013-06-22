@@ -1,15 +1,15 @@
 import java.util.List;
 
 
-public class StraightPokerHands extends AbstractPokerHands {
+public class StraightFlushPokerHands extends AbstractPokerHands {
 
-	public StraightPokerHands(String cards, AbstractPokerHands next) {
-		super(cards, PokerHandsType.STRAIGHT, next);
+	public StraightFlushPokerHands(String cards, AbstractPokerHands next) {
+		super(cards, PokerHandsType.STRAIGHT_FLUSH, next);
 	}
 
 	@Override
 	protected boolean isMatched() {
-		return isStraight();
+		return isStraight() && isFlush();
 	}
 
 	@Override

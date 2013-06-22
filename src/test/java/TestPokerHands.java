@@ -136,6 +136,17 @@ public class TestPokerHands {
 		assertPokerHandsLargerThan("2S 3C 3D 3S 3H", "2S 2C 2D 2S 3H");
 	}
 	
+	@Test
+	public void straight_flush_is_higher_than_four_of_a_kind() {
+		assertPokerHandsLargerThan("2S 3S 4S 5S 6S", "KS AC AD AS AH");
+		assertPokerHandsSmallerThan("KS AC AD AS AH", "2S 3S 4S 5S 6S");
+	}
+	
+	@Test
+	public void straight_flush_compare_to_straight_flush_by_highest_card_rank() {
+		assertPokerHandsLargerThan("3S 4S 5S 6S 7S", "2S 3S 4S 5S 6S");
+	}
+	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
