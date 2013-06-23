@@ -3,6 +3,12 @@
   <groupId>PokerHands</groupId>
   <artifactId>PokerHands</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<maven.compiler.source>1.7</maven.compiler.source>
+  	<maven.compiler.target>1.7</maven.compiler.target>
+  	<sonar.pit.target.classes>*PokerHands</sonar.pit.target.classes>
+  	<sonar.pit.target.tests>TestPokerHands</sonar.pit.target.tests>
+  </properties>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>

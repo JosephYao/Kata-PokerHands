@@ -45,7 +45,7 @@ public class TestPokerHands {
 	
 	@Test
 	public void pair_compare_to_pair_by_pair_card_rank() {
-		assertPokerHandsSmallerThan("2S 3H 5S 6C 6D", "2S 3H 5S 7C 7D");
+		assertPokerHandsSmallerThan("2S 3H 6C 6D 8S", "2S 3H 5S 7C 7D");
 		assertPokerHandsLargerThan("2S 3H 5S 8C 8D", "2S 3H 5S 7C 7D");
 		assertPokerHandsLargerThan("2S 3H 8S 8C 9D", "2S 7H 7S 8C 9D");
 	}
@@ -148,21 +148,21 @@ public class TestPokerHands {
 	}
 	
 	private void assertPokerHandsSmallerThan(String firstPokerHands, String secondPokerHands) {
-		PokerHands first = new PokerHands(firstPokerHands);
-		PokerHands second = new PokerHands(secondPokerHands);
-		assertEquals(-1, Integer.signum(first.compareTo(second)));
+		assertPokerHandsBySignum(-1, firstPokerHands, secondPokerHands);
 	}
 	
 	private void assertPokerHandsLargerThan(String firstPokerHands, String secondPokerHands) {
-		PokerHands first = new PokerHands(firstPokerHands);
-		PokerHands second = new PokerHands(secondPokerHands);
-		assertEquals(1, Integer.signum(first.compareTo(second)));
+		assertPokerHandsBySignum(1, firstPokerHands, secondPokerHands);
 	}
 	
 	private void assertPokerHandsEquals(String firstPokerHands, String secondPokerHands) {
+		assertPokerHandsBySignum(0, firstPokerHands, secondPokerHands);
+	}
+
+	private void assertPokerHandsBySignum(int expectedSignum, String firstPokerHands, String secondPokerHands) {
 		PokerHands first = new PokerHands(firstPokerHands);
 		PokerHands second = new PokerHands(secondPokerHands);
-		assertEquals(0, Integer.signum(first.compareTo(second)));
+		assertEquals(expectedSignum, Integer.signum(first.compareTo(second)));
 	}
 	
 }
